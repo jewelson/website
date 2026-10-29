@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="app" id="app">
-<div class="stage" id="stage">
+<section class="hero" id="stage" aria-label="The listening room">
 
   <!-- Header -->
   <header class="hdr">
@@ -21,23 +21,11 @@
       <div class="who-role">Product designer</div>
     </div>
     <nav class="nav" aria-label="Primary">
-      <a class="navlink on" href="#work" data-explore>Selected work</a>
+      <a class="navlink on" href="#work">Selected work</a>
       <a class="navlink" href="#about">A little about me</a>
       <a class="navlink" href="#hello">Say hello <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" style="margin-left: 4px"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a>
     </nav>
   </header>
-
-  <!-- Introduction -->
-  <div class="intro" id="intro">
-    <p class="eyebrow muted">A small corner of the internet</p>
-    <h1 class="hero" style="margin-top: var(--sp-5)"><span>Make yourself</span><span>at home.</span></h1>
-    <p class="body" style="margin-top: var(--sp-6)">I design thoughtful digital products that make complex things feel simple.</p>
-    <p class="body muted" style="margin-top: var(--sp-3)">Take a look around. There’s a story behind every frame.</p>
-    <a class="cta" href="#work" data-explore style="margin-top: var(--sp-6)">
-      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg>
-      <span>Explore my work</span>
-    </a>
-  </div>
 
   <!-- The room: one scaled scene, positioned in the photo's own pixels -->
   <div class="sceneBox" id="sceneBox">
@@ -129,6 +117,9 @@
       <img class="deco" src="img/room/lamp.webp" alt="" style="left: 961.2px; top: 237.7px; width: 118.2px; height: 157.6px">
       <div class="shadow" aria-hidden="true" style="left: 974px; top: 371px; width: 92px; height: 10px; background: radial-gradient(closest-side, rgba(22,12,5,0.4), rgba(22,12,5,0))"></div>
 
+      <!-- Seasonal corner: plant, Halloween plant or Christmas tree, chosen by date in js/room.js -->
+      <div class="corner" id="corner" aria-hidden="true"><img id="cornerImg" alt=""></div>
+
       <!-- Sunlight from the sun's real position -->
       <svg class="plate sun" id="sun" aria-hidden="true" viewBox="-640 -480 2939 1337">
         <defs>
@@ -161,6 +152,7 @@
       <div class="plate amb" id="amb" aria-hidden="true"></div>
       <div class="plate glow" id="glow" aria-hidden="true"></div>
       <div class="abs" id="lit" aria-hidden="true"></div>
+      <div class="corner-lights" id="cornerLights" aria-hidden="true" hidden><div class="halo"></div></div>
       <img class="deco lamp-lit" src="img/room/lamp.webp" alt="" style="left: 961.2px; top: 237.7px; width: 118.2px; height: 157.6px; opacity: var(--l5)">
 
       <!-- Project placards: appear on hover or focus, beside the frame rather than over it -->
@@ -168,26 +160,27 @@
 
       <button type="button" class="tt-btn" data-play aria-label="Drop the needle (play music)" style="left: 570px; top: 300px; width: 190px; height: 80px"></button>
     </div>
+    <div class="scrim" aria-hidden="true"></div>
   </div>
 
-  <!-- Selected work as a list (phones and tablets) -->
-  <section id="work" class="worklist" aria-labelledby="work-h">
-    <h2 id="work-h">Selected work</h2>
-    <ol id="workList"></ol>
-  </section>
+  <div class="hero-copy">
+    <h1 class="headline">I design thoughtful digital products that make complex things feel simple.</h1>
+  </div>
 
   <!-- Footer: sits on the floor of the photo -->
   <footer class="foot">
-    <div style="display: flex; align-items: center; gap: var(--sp-3); min-width: 0">
+    <div class="foot-left">
       <button type="button" class="needle" data-play aria-label="Drop the needle (play music)" aria-pressed="false">
         <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" class="rec" data-spin><circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="10" cy="10" r="2.6" fill="currentColor"/><path d="M10 3.5a6.5 6.5 0 0 1 6.5 6.5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/></svg>
       </button>
       <div style="min-width: 0; line-height: 1.4">
         <div style="opacity: 0.78">On the turntable</div>
         <div class="track-row"><span class="track" id="track"></span><span class="eq" data-spin aria-hidden="true"><span></span><span></span><span></span></span></div>
+        <a class="spot" id="spotify" href="https://open.spotify.com/" target="_blank" rel="noopener" hidden></a>
       </div>
     </div>
-    <div style="position: relative; display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; justify-content: flex-end">
+    <a class="cue" href="#work"><span class="cue-line" aria-hidden="true"></span><span class="cue-text">Make yourself at home</span></a>
+    <div class="foot-right">
       <span style="display: inline-flex; align-items: center; gap: var(--sp-2)">
         <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path id="wxIcon"/></svg>
         <span>Creston, BC · <span id="clock"></span> · <span id="condition"></span> · <span aria-label="temperature not yet connected">—°</span></span>
@@ -196,6 +189,24 @@
       <div class="pop" id="pop" role="group" aria-label="Weather in the room" hidden></div>
     </div>
   </footer>
+</section>
+
+<!-- Projects: the wall's frames float down into these cards as you scroll -->
+<section class="work" id="work" aria-labelledby="work-h">
+  <div class="work-head">
+    <h2 id="work-h">Projects</h2>
+    <div class="rail-nav">
+      <button type="button" class="icon-btn" id="railPrev" aria-label="Scroll projects left"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg></button>
+      <button type="button" class="icon-btn" id="railNext" aria-label="Scroll projects right"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></button>
+    </div>
+  </div>
+  <ol class="rail" id="rail"></ol>
+</section>
+
+<footer class="site-foot">
+  <p>© Jewelson Fernandes</p>
+  <p id="credit"></p>
+</footer>
 
   <!-- Project panel -->
   <aside class="panel" id="panel" aria-label="Project details">
@@ -227,7 +238,9 @@
       </div>
     </div>
   </aside>
-</div>
+
+<div class="flight" id="flight" aria-hidden="true"></div>
+<audio id="audio" preload="none" loop></audio>
 </div>
 <script src="js/room.js"></script>
 </body>
